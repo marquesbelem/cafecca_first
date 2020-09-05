@@ -156,5 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Distance: 10
+  StoppingDistance: 2
   Speed: 5
   Movement: 0

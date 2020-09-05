@@ -48,6 +48,10 @@ public class EnemyMovement : MonoBehaviour
         if (Vector3.Distance(transform.position, _Target) > StoppingDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, _Target, Speed * Time.deltaTime);
+
+            Vector3 relativePosition = _Target - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
+            transform.rotation = targetRotation;
         }
     }
 }
