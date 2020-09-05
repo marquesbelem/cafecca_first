@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayerLooking : MonoBehaviour
 {
-    Transform playerTransf;
+    private Transform playerTransf;
     [SerializeField]
-    float cameraVelocity = 80f;
+    private float cameraVelocity = 80f;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         playerTransf = GetComponent<Transform>();    
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * cameraVelocity;
+        var mouseX = Input.GetAxis("Mouse X") * cameraVelocity;
         playerTransf.Rotate(Vector3.up * mouseX);
     }
 }

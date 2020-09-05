@@ -17,13 +17,14 @@ public class MovementComp : MonoBehaviour
     private Vector3 moveVector;
     [SerializeField]
     private float jumpForce;
-
+    private Rigidbody rb;
     //TODO: Automated configs from an ScriptableObj.
 
     // Start is called before the first frame update
     void Start()
     {
         chController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -31,22 +32,23 @@ public class MovementComp : MonoBehaviour
     {
         if (chController.isGrounded)
         {
-            verticalVelocity = -gravity * Time.deltaTime;
+            //verticalVelocity = -gravity * Time.deltaTime;
 
             if (Input.GetAxis("Jump") > 0)
             {
-                verticalVelocity = jumpForce;
+                //verticalVelocity = jumpForce;
+                rb.AddForce(transform.up * jumpForce);
             }
         }
         else
         {
-            verticalVelocity -= gravity * Time.deltaTime;
+            //verticalVelocity -= gravity * Time.deltaTime;
         }
 
         moveVector = Vector3.zero;
         moveVector.x = Input.GetAxis("Horizontal") * moveVelocity * Time.deltaTime;
         moveVector.z = Input.GetAxis("Vertical") * moveVelocity * Time.deltaTime;
-        moveVector.y = verticalVelocity * maxFallingSpeed;
+       // moveVector.y = verticalVelocity * maxFallingSpeed;
 
         chController.Move(moveVector);        
     }
